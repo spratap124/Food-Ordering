@@ -1,0 +1,48 @@
+body{
+    color: #76430f !important;
+}
+
+.lfloat{
+    float: left;
+}
+
+.rfloat{
+    float: right;
+}
+.custom-container{
+    min-height: calc(100vh - 100px);
+    padding: 15px;
+}
+
+.container-shadow{
+    box-shadow: 0 1px 5px 3px rgba(0, 0, 0, 0.085) !important;
+}
+
+.bg-color,
+.bg-color:hover,
+.bg-color:active,
+.bg-color:link {
+  background: #ffcc33 !important;
+
+  border: none;
+  color: #76430f !important;
+}
+
+.btn-custom{
+    color: #76430f;
+    background-color: #ffcc33;
+    border-color: #D7A612;
+    box-shadow: 1px 1px 2px 0px #ccc;
+
+}
+
+
+
+.btn-custom:hover{
+    background: #ffdd76;
+
+}
+
+
+
+
