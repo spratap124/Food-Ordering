@@ -13,10 +13,7 @@
                     <div class="navbar-collapse collapse sidebar-navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#">All</a></li>
-                        <li><a href="#">Oriental</a></li>
-                        <li><a href="#">Chinese Comobos</a></li>
-                        <li><a href="#">Chinese Starter</a></li>
-                        <li><a href="#">Salads</a></li>
+                        <li v-for="food in foodList"><a href="#">{{food[0].category}}</a></li>
                     </ul>
                     </div><!--/.nav-collapse -->
                 </div>
@@ -26,9 +23,10 @@
 <script>
 
     export default {
+        props:['foodList'],
         data(){
             return {
-                appName:"Food Ordering"
+                
             }
         }
     }

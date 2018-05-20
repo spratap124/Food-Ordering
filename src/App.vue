@@ -4,17 +4,17 @@
     <div class="container custom-container container-shadow">
       <div class="row">
         <div class="col-md-2">
-          <sideMenu></sideMenu>
+          <sideMenu :foodList="foodList"></sideMenu>
         </div>
         <div class="col-md-6 food-list-wrapper">
           <div class="food-list-container">
             <div v-for="food in foodList">
-              <foodList :foods="food"></foodList>
+              <foodList :foods="food" v-on:addToCart="addToCart($event)" v-on:removeFromCart="removeFromCart($event)"></foodList>
             </div>
           </div>
         </div>
         <div class="col-md-4">
-          <cart></cart>
+          <cart :cart="cart" v-on:emptyCart="emptyCart"></cart>
         </div>
       </div>
     </div>
@@ -23,12 +23,41 @@
 
 <script>
 export default {
-  name: "app",
   data() {
     return {
       msg: "Welcome to Your Food Ordering App",
-      foodData:[]
+      foodData:[],
+      cart:[]
     };
+  },
+  methods:{
+    addToCart: function(foodToAdd){
+      const locationInCart = this.cart.findIndex(f => {
+        return f.details.name === foodToAdd.name;
+      });
+      
+      if(locationInCart === -1){
+     this.cart.push({
+        details: foodToAdd,
+        quantity: 1
+        });
+      } else {
+          this.cart[locationInCart].quantity++
+      }
+    },
+    removeFromCart:function(foodToRemove){
+      const locationInCart = this.cart.findIndex(f => {
+        return f.details.name === foodToRemove.name;
+      });
+      if(this.cart[locationInCart].quantity <= 1){
+        this.cart.splice(locationInCart, 1)
+     } else {
+        this.cart[locationInCart].quantity--
+     }
+    },
+    emptyCart:function(){
+      this.cart = [];
+    }
   },
   computed:{
     foodList:function(){
@@ -49,6 +78,7 @@ export default {
     this.$http.get('https://thesmartq.firebaseio.com/menu.json').then(function(data){
         self.foodData = data.body;
     });
+    
   }
 };
 </script>

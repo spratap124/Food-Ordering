@@ -3,7 +3,7 @@
        <div class="panel panel-default">
             <!-- Panel Contents -->
             <div class="panel-heading bg-color"> <span>{{foods[0].category}}</span></div>
-            <!-- List Groups -->
+            
             <ul class="list-group">
                 <li class="list-group-item" v-for="food in foods" >
                     <div class="veg-flag lfloat">
@@ -27,9 +27,9 @@
 
                     <!-- add to cart -->
                     <div class="add-to-cart lfloat">
-                        <span class="sub-item glyphicon glyphicon-minus-sign lfoat"></span>
-                        <span class="quantity lfoat">0</span>
-                        <span class="add-item glyphicon glyphicon-plus-sign rfloat" ></span>
+                        <span class="sub-item glyphicon glyphicon-minus-sign lfoat" @click="removeFromCart(food)"></span>
+                        <span class="quantity lfoat">{{foodCount}}</span>
+                        <span class="add-item glyphicon glyphicon-plus-sign rfloat" @click="addToCart(food)"></span>
                     </div>
                     <!-- add to cart end-->
                     
@@ -49,9 +49,22 @@ export default {
     props:['foods'],
   data() {
     return {
-      appName: "Food Ordering"
+      foodCount:0
     };
+  },
+  methods:{
+    addToCart: function(food){
+        console.log("food", food);
+        this.foodCount++
+        this.$emit('addToCart',food);
+    },
+    removeFromCart:function(food){
+        this.$emit('removeFromCart',food);
+    }
+   
   }
+
+  
 };
 </script>
 
