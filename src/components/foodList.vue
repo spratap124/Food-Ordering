@@ -19,18 +19,14 @@
                             <h6>{{food.name}}</h6>
                         </div>
                         <!-- item description -->
-                        <div class="item-description">
+                        <div class="item-description" v-if="food.description">
                             <p>{{food.description}}</p>
                         </div>
                     </div>
                     <!-- item end-->
 
                     <!-- add to cart -->
-                    <div class="add-to-cart lfloat">
-                        <span class="sub-item glyphicon glyphicon-minus-sign lfoat" @click="removeFromCart(food)"></span>
-                        <span class="quantity lfoat">{{foodCount}}</span>
-                        <span class="add-item glyphicon glyphicon-plus-sign rfloat" @click="addToCart(food)"></span>
-                    </div>
+                    <addToCart :food="food" @removeFromCart="removeFromCart($event)" @addToCart="addToCart($event)"></addToCart>
                     <!-- add to cart end-->
                     
                     <!-- itme price -->
@@ -49,13 +45,11 @@ export default {
     props:['foods'],
   data() {
     return {
-      foodCount:0
+      
     };
   },
   methods:{
     addToCart: function(food){
-        console.log("food", food);
-        this.foodCount++
         this.$emit('addToCart',food);
     },
     removeFromCart:function(food){
@@ -63,8 +57,6 @@ export default {
     }
    
   }
-
-  
 };
 </script>
 
@@ -104,23 +96,6 @@ export default {
 
 .item > .item-description {
   color: #999;
-}
-
-.add-to-cart {
-  width: 15%;
-  padding-top: 15px;
-  margin-left: 20%;
-}
-
-.add-to-cart > .add-item,
-.add-to-cart > .sub-item {
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-}
-
-.add-to-cart > .quantity {
-  margin: 0 10px;
 }
 
 .item-price {

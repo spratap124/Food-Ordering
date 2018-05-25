@@ -46,7 +46,8 @@ export default {
       }
     },
     removeFromCart:function(foodToRemove){
-      const locationInCart = this.cart.findIndex(f => {
+      if(this.cart.length !== 0){
+        const locationInCart = this.cart.findIndex(f => {
         return f.details.name === foodToRemove.name;
       });
       if(this.cart[locationInCart].quantity <= 1){
@@ -54,8 +55,11 @@ export default {
      } else {
         this.cart[locationInCart].quantity--
      }
+      }
+      
     },
     emptyCart:function(){
+      this.$store.commit('emptyCart');
       this.cart = [];
     }
   },
