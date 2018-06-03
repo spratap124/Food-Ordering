@@ -2,6 +2,8 @@
 
 > A food ordering application built using VueJS
 
+![alt text](https://github.com/spratap124/Food-Ordering/blob/master/src/assets/images/Screenshot.png)
+
 ## Build Setup
 
 ``` bash
