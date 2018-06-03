@@ -34,7 +34,6 @@
                         <span class="price"><span class="rs-sign">&#8377;</span>{{food.price}}</span>
                     </div>
                 </li>
-
             </ul>
         </div>
     </div>
